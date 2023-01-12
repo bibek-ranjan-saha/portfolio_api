@@ -5,7 +5,7 @@ const Users = require('./models/user');
 function SocketRouter(io) {
     const router = express.Router();
 
-    router.get("/new", async (req, res) => {
+    router.post("/api", async (req, res) => {
         const data = await Users.find();
         if (data[0] != undefined) {
 
