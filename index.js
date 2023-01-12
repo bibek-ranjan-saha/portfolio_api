@@ -27,7 +27,7 @@ io.on("connection",(socket) => {
     console.log(`connect with ${socket.id}`);
 })
 
-server.listen(port, () => {
+server.listen(port, "0.0.0.0", () => {
     console.log(`connected now enjoy ${port}`);
 });
 
