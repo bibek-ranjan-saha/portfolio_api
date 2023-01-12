@@ -1,5 +1,4 @@
 const express = require("express");
-const react = require("react");
 const Users = require('./models/user');
 
 function SocketRouter(io) {
