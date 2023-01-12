@@ -6,7 +6,7 @@ function SocketRouter(io) {
     const router = express.Router();
 
     router.use("/api", async (req, res) => {
-        const data = await Users.find();
+        var data = await Users.find();
         if (data[0] != undefined) {
 
             await Users.findOneAndUpdate({ '_id': data[0]._id }, { $inc: { 'totalCount': 1 } });
