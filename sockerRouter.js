@@ -5,6 +5,9 @@ function SocketRouter(io) {
     const router = express.Router();
 
     router.use("/api", async (req, res) => {
+        console.log("got this from client");
+        console.log(req.body);
+        console.log(res.body);
         var data = await Users.find();
         if (data[0] != undefined) {
 
