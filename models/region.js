@@ -20,7 +20,7 @@ const regionSchema = new monngoose.Schema({
         type : Number
     },
     count : {
-        default : 0,
+        default : 1,
         type : Number,
     }
 });
