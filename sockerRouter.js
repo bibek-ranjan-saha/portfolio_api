@@ -53,7 +53,7 @@ function SocketRouter(io) {
 
                 }
 
-                const serviceProviders = await Users.findOneAndUpdate({ 'serviceProviders.isp': req.body.org }, { $inc: { 'serviceProviders.$.count': 1 } });
+                const serviceProviders = await Users.findOneAndUpdate({ 'serviceProviders.org': req.body.org }, { $inc: { 'serviceProviders.$.count': 1 } });
 
                 if (serviceProviders === null) {
 
