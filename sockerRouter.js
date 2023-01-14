@@ -33,7 +33,7 @@ function SocketRouter(io) {
 
                 }
 
-                const regions = await Users.findOneAndUpdate({ 'regions.name': req.body.regionName }, { $inc: { 'regions.$.count': 1 } });
+                const regions = await Users.findOneAndUpdate({ 'regions.name': req.body.region }, { $inc: { 'regions.$.count': 1 } });
 
                 if (regions === null) {
 
@@ -53,7 +53,7 @@ function SocketRouter(io) {
 
                 }
 
-                const serviceProviders = await Users.findOneAndUpdate({ 'serviceProviders.isp': req.body.isp }, { $inc: { 'serviceProviders.$.count': 1 } });
+                const serviceProviders = await Users.findOneAndUpdate({ 'serviceProviders.isp': req.body.org }, { $inc: { 'serviceProviders.$.count': 1 } });
 
                 if (serviceProviders === null) {
 
