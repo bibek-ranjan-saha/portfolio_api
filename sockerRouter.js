@@ -7,7 +7,6 @@ function SocketRouter(io) {
     router.use("/api", async (req, res) => {
         console.log("got this from client");
         console.log(req.body);
-        console.log(res.body);
         var data = await Users.find();
         if (data[0] != undefined) {
 
@@ -26,7 +25,6 @@ function SocketRouter(io) {
                             "$push": {
                                 "cities": {
                                     "name": req.body.city,
-                                    "zip": req.body.zip,
                                     "count": 1
                                 }
                             }
@@ -43,11 +41,10 @@ function SocketRouter(io) {
                         {
                             "$push": {
                                 "regions": {
-                                    "name": req.body.regionName,
-                                    "code": req.body.region,
+                                    "name": req.body.region,
+                                    "code": req.body.postal,
                                     "timeZone": req.body.timezone,
-                                    "lat": req.body.lat,
-                                    "long": req.body.lon,
+                                    "latlong": req.body.loc,
                                     "count": 1
                                 }
                             }
@@ -64,10 +61,8 @@ function SocketRouter(io) {
                         {
                             "$push": {
                                 "serviceProvider": {
-                                    "isp": req.body.isp,
                                     "org": req.body.org,
-                                    "ip": req.body.query,
-                                    "as": req.body.as,
+                                    "ip": req.body.ip,
                                     "count": 1
                                 }
                             }
@@ -84,7 +79,6 @@ function SocketRouter(io) {
                         "$push": {
                             "countries": {
                                 "name": req.body.country,
-                                "code": req.body.countryCode,
                                 "count": 1
                             }
                         }
@@ -97,29 +91,20 @@ function SocketRouter(io) {
             var result;
             const user = new Users;
             var country = {
-                "name": req.body.country,
-                "code": req.body.countryCode,
-                "count": 1
+                "name": req.body.country
             };
             var sp = {
-                "isp": req.body.isp,
                 "org": req.body.org,
-                "ip": req.body.query,
-                "as": req.body.as,
-                "count": 1
+                "ip": req.body.ip
             };
             var region = {
-                "name": req.body.regionName,
-                "code": req.body.region,
+                "name": req.body.region,
+                "code": req.body.postal,
                 "timeZone": req.body.timezone,
-                "lat": req.body.lat,
-                "long": req.body.lon,
-                "count": 1
+                "latlong": req.body.loc
             };
             var city = {
-                "name": req.body.city,
-                "zip": req.body.zip,
-                "count": 1
+                "name": req.body.city
             };
             user.countries.push(country);
             user.cities.push(city);

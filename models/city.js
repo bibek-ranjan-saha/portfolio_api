@@ -5,10 +5,6 @@ const citySchema = new monngoose.Schema({
         type :  String,
         trim : true,
     },
-    zip : {
-        type : String,
-        trim : true,
-    },
     count : {
         default : 0,
         type : Number,

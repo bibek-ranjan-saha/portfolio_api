@@ -13,11 +13,9 @@ const regionSchema = new monngoose.Schema({
         type : String,
         trim : true,
     },
-    lat : {
-        type : Number
-    },
-    long : {
-        type : Number
+    latlong : {
+        type : String,
+        trim : true,
     },
     count : {
         default : 1,

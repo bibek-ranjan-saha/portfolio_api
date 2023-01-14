@@ -5,10 +5,6 @@ const countrySchema = new monngoose.Schema({
         type :  String,
         trim : true,
     },
-    code : {
-        type : String,
-        trim : true,
-    },
     count : {
         default : 1,
         type : Number,
