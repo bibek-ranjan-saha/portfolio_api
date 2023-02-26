@@ -4,6 +4,11 @@ const Users = require('./models/user');
 function SocketRouter(io) {
     const router = express.Router();
 
+    router.use('/test_ip', (req, res) => {
+        console.log(`hello there ${req.headers.host}`)
+      res.send(`Hello World! your ip address is${req.headers.host}`)
+    })
+
     router.use("/api", async (req, res) => {
         console.log("got this from client");
         console.log(req.body);
