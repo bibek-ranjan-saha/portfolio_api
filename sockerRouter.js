@@ -1,12 +1,25 @@
 const express = require("express");
 const Users = require('./models/user');
+const geoip = require('geoip-lite');
 
 function SocketRouter(io) {
     const router = express.Router();
 
+    router.use('/api/geoip', (req, res) => {
+    const ipAddress = req.ip;
+    const geoData = geoip.lookup(ipAddress);
+
+    if (!geoData) {
+        return res.status(404).json({ error: `IP address not found for ${ipAddress} and data is ${geoData}` });
+    }
+
+    res.json(geoData);
+    });
+
     router.use('/test_ip', (req, res) => {
         console.log(`hello there ${req.headers.host}`)
-      res.send(`Hello World! your ip address is${req.headers.host}`)
+        const ipAddress = req.headers['x-forwarded-for'] || req.socket.remoteAddress;
+      res.send(`Hello World! your ip address is${req.headers.host} and ip is may be ${req.ip} ${req.ips} and this is forwarded response is ${ipAddress}`)
     })
 
     router.use("/api", async (req, res) => {
