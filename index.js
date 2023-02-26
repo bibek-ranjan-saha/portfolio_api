@@ -1,5 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require("cors");
 const app = express();
 const connectTODB = require('./db');
 
@@ -18,6 +19,8 @@ const io = require("socket.io")(server,{
 const bodyParser = require("body-parser");
 const SocketRouter = require("./sockerRouter")(io);
 const port = process.env.PORT || 3000;
+
+app.use(cors());
 
 app.use(bodyParser.json());
 
